@@ -1,4 +1,5 @@
 import { getIssueByNumber, getIssueComments } from '@/modules/issues/actions';
+import { GitHubIssue } from '@/modules/issues/interfaces';
 import { Injectable, signal } from '@angular/core';
 import {
   injectQuery,
@@ -35,5 +36,9 @@ export class IssueService {
       queryFn: () => getIssueByNumber(issueNumber),
       staleTime: 1000 * 60 * 2,
     });
+  }
+
+  setIssue(issue: GitHubIssue) {
+    this.queryClient.setQueryData(['issues', issue.number.toString()], issue);
   }
 }

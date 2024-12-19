@@ -20,6 +20,6 @@ export class IssueItemComponent {
   issueService = inject(IssueService);
 
   prefetchIssue() {
-    this.issueService.prefetchIssue(this.issue().number.toString());
+    this.issueService.setIssue(this.issue());
   }
 }
