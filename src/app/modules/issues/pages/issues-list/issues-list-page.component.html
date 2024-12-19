@@ -1,0 +1,30 @@
+<h1>GitHub APP</h1>
+<div class="my-5 border-b-2 border-blue-600"></div>
+
+<section class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <div class="flex flex-col col-span-3">
+    <div class="flex gap-2">
+      <button class="btn">All</button>
+      <button class="btn">Open</button>
+      <button class="btn">Closed</button>
+    </div>
+  </div>
+
+  <div class="mt-4 flex flex-col col-span-2">
+    @if (issuesQuery.isLoading()) {
+    <span>Loading...</span>
+    } @else { @for (issue of issuesQuery.data(); track issue.id) {
+    <issue-item [issue]="issue" />
+    } @empty {
+    <p>Data not found</p>
+    } }
+  </div>
+
+  <div class="mt-4">
+    @if (labelQuery.isLoading()) {
+    <span>Loading...</span>
+    } @else {
+    <issues-label-selector [labels]="labelQuery.data() ?? []" />
+    }
+  </div>
+</section>
